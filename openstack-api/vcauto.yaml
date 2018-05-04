@@ -1,0 +1,73 @@
+footprint: poc
+admin-password: Arpanuggi
+networks:
+  FE:
+    cidr: 192.168.1.0/24
+  AP:
+    cidr: 192.168.2.0/24
+  BE:
+    cidr: 192.168.3.0/24
+servers:
+  cloud-firewall:
+    flavor: performance1-2
+    image-id: 59b394f6-b2e0-4f11-b7d1-7fea4abc60a0
+    networks: [FE,AP,BE]
+    ip-addresses:
+      FE: 192.168.1.10
+      AP: 192.168.2.10
+      BE: 192.168.3.10
+  application:
+    flavor: performance1-2
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [AP,]
+    ip-addresses:
+      AP: 192.168.2.11
+  bastion:
+    flavor: performance1-2
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [BE,]
+    ip-addresses:
+      BE: 192.168.3.11
+  eis:
+    flavor: performance1-2
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [FE,]
+    ip-addresses:
+      FE: 192.168.1.11
+
+  mq:
+    flavor: performance1-2
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [AP,]
+    ip-addresses:
+      AP: 192.168.2.12
+  web:
+    flavor: performance1-2
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [FE,]
+    ip-addresses:
+      FE: 192.168.1.12
+  oltp:
+    flavor: performance1-4
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [BE,]
+    ip-addresses:
+      BE: 192.168.3.12
+  odssql:
+    flavor: performance1-4
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [BE,]
+    ip-addresses:
+      BE: 192.168.3.13
+  oltp-replica:
+    flavor: performance1-4
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [BE,]
+    ip-addresses:
+      BE: 192.168.3.14
+  dist-sql:
+    flavor: performance1-4
+    image-id: d88188a5-1b02-4b37-8a91-7732e42348c1
+    networks: [BE,]
+    ip-addresses:
+      BE: 192.168.3.15

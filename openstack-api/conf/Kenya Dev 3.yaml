@@ -1,0 +1,86 @@
+footprint: Kenya Dev 3
+servers:
+  KED3AP01:
+    description: App Server
+    flavor: general1-4
+    hostname: KED3AP01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.105}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3AP01_bootvol
+    volume_size: 80
+  KED3CL01:
+    description: Cache Server
+    flavor: general1-4
+    hostname: KED3CL01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.106}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3CL01_bootvol
+    volume_size: 80
+  KED3DB01a:
+    description: OLTP DB Single Node
+    flavor: general1-4
+    hostname: KED3DB01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.107}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3DB01a_bootvol
+    volume_size: 80
+  KED3DB02a:
+    description: DIST DB Single Node
+    flavor: general1-4
+    hostname: KED3DB02a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.110}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3DB02a_bootvol
+    volume_size: 80
+  KED3DB04a:
+    description: ODS DB Single Node
+    flavor: general1-4
+    hostname: KED3DB04a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.113}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3DB04a_bootvol
+    volume_size: 80
+  KED3EI01:
+    description: EIS Server
+    flavor: general1-4
+    hostname: KED3EI01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.100}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3EI01_bootvol
+    volume_size: 80
+  KED3MQ01a:
+    description: MQ Single Node
+    flavor: general1-4
+    hostname: KED3MQ01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.102}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3MQ01a_bootvol
+    volume_size: 80
+  KED3MX01:
+    description: iSCSI Sever
+    flavor: general1-4
+    hostname: KED3MX01
+    image: iscsi
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.116}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3MX01_bootvol
+    volume_size: 320
+  KED3WB01:
+    description: WEB Server
+    flavor: general1-4
+    hostname: KED3WB01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-DEV3: 10.5.3.101}
+    vlan: RC-CLOUD-KE-DEV3
+    volume: KED3WB01_bootvol
+    volume_size: 80
+  images: {iscsi: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi1: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    iscsi2: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi3: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    winbase: 85533cc6-6776-460c-a5f5-b9b0c7ed915d, winbase1: 85533cc6-6776-460c-a5f5-b9b0c7ed915d}

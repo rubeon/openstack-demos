@@ -1,0 +1,143 @@
+environment,vlan,hostname,description,ip,flavor,volume,volume_size,image
+Kenya AMS,KE-AMS-APP,KEA1AP01,App Server,10.2.2.100,general1-4,KEA1AP01_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1AP01,App Server,10.5.1.105,general1-4,KED1AP01_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2AP01,App Server,10.5.2.105,general1-4,KED2AP01_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3AP01,App Server,10.5.3.105,general1-4,KED3AP01_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-APP,KES1AP01,App Server,10.2.5.100,general1-4,KES1AP01_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-APP,KES2AP01,App Server,10.2.8.100,general1-4,KES2AP01_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-APP,KES3AP01,App Server,10.2.11.100,general1-4,KES3AP01_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-APP,KES4AP01,App Server,10.2.14.100,general1-4,KES4AP01_bootvol,80,winbase
+MZ AMS,MZ-AMS-APP,MZA1AP01,App Server,10.3.2.100,general1-4,MZA1AP01_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1AP01,App Server,10.5.11.106,general1-4,MZD1AP01_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-APP,MZS1AP01,App Server,10.3.5.100,general1-4,MZS1AP01_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-APP,TZA1AP01,App Server,10.4.2.100,general1-4,TZA1AP01_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-APP,TZS1AP01,App Server,10.4.5.100,general1-4,TZS1AP01_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-APP,TZS2AP01,App Server,10.4.8.100,general1-4,TZS2AP01_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1AP01,App Server,10.5.21.105,general1-4,TZD1AP01_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2AP01,App Server,10.5.22.105,general1-4,TZD2AP01_bootvol,80,winbase
+Kenya AMS,KE-AMS-APP,KEA1CL01,Cache Server,10.2.2.101,general1-4,KEA1CL01_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1CL01,Cache Server,10.5.1.106,general1-4,KED1CL01_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2CL01,Cache Server,10.5.2.106,general1-4,KED2CL01_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3CL01,Cache Server,10.5.3.106,general1-4,KED3CL01_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-APP,KES1CL01,Cache Server,10.2.5.101,general1-4,KES1CL01_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-APP,KES2CL01,Cache Server,10.2.8.101,general1-4,KES2CL01_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-APP,KES3CL01,Cache Server,10.2.11.101,general1-4,KES3CL01_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-APP,KES4CL01,Cache Server,10.2.14.101,general1-4,KES4CL01_bootvol,80,winbase
+MZ AMS,MZ-AMS-APP,MZA1CL01,Cache Server,10.3.2.101,general1-4,MZA1CL01_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1CL01,Cache Server,10.5.11.107,general1-4,MZD1CL01_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-APP,MZS1CL01,Cache Server,10.3.5.101,general1-4,MZS1CL01_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-APP,TZA1CL01,Cache Server,10.4.2.101,general1-4,TZA1CL01_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-APP,TZS1CL01,Cache Server,10.4.5.101,general1-4,TZS1CL01_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-APP,TZS2CL01,Cache Server,10.4.8.101,general1-4,TZS2CL01_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1CL01,Cache Server,10.5.21.106,general1-4,TZD1CL01_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2CL01,Cache Server,10.5.22.106,general1-4,TZD2CL01_bootvol,80,winbase
+Kenya AMS,KE-AMS-BE,KEA1DB02a,DIST DB Single Node ,10.2.3.103,general1-4,KEA1DB02a_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1DB02a,DIST DB Single Node ,10.5.1.110,general1-4,KED1DB02a_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2DB02a,DIST DB Single Node ,10.5.2.110,general1-4,KED2DB02a_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3DB02a,DIST DB Single Node ,10.5.3.110,general1-4,KED3DB02a_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-BE,KES1DB02a,DIST DB Single Node ,10.2.6.103,general1-4,KES1DB02a_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-BE,KES2DB02a,DIST DB Single Node ,10.2.9.103,general1-4,KES2DB02a_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-BE,KES3DB02a,DIST DB Single Node ,10.2.12.103,general1-4,KES3DB02a_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-BE,KES4DB02a,DIST DB Single Node ,10.2.15.103,general1-4,KES4DB02a_bootvol,80,winbase
+MZ AMS,MZ-AMS-BE,MZA1DB02a,DIST DB Single Node ,10.3.3.103,general1-4,MZA1DB02a_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1DB02a,DIST DB Single Node ,10.5.11.111,general1-4,MZD1DB02a_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-BE,MZS1DB02a,DIST DB Single Node ,10.3.6.103,general1-4,MZS1DB02a_bootvol,80,winbase
+Kenya AMS,KE-AMS-FE,KEA1EI01,EIS Server,10.2.1.100,general1-4,KEA1EI01_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1EI01,EIS Server,10.5.1.100,general1-4,KED1EI01_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2EI01,EIS Server,10.5.2.100,general1-4,KED2EI01_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3EI01,EIS Server,10.5.3.100,general1-4,KED3EI01_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-FE,KES1EI01,EIS Server,10.2.4.100,general1-4,KES1EI01_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-FE,KES2EI01,EIS Server,10.2.7.100,general1-4,KES2EI01_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-FE,KES3EI01,EIS Server,10.2.10.100,general1-4,KES3EI01_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-FE,KES4EI01,EIS Server,10.2.13.100,general1-4,KES4EI01_bootvol,80,winbase
+MZ AMS,MZ-AMS-FE,MZA1EI01,EIS Server,10.3.1.101,general1-4,MZA1EI01_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1EI01,EIS Server,10.5.11.101,general1-4,MZD1EI01_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-FE,MZS1EI01,EIS Server,10.3.4.101,general1-4,MZS1EI01_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-FE,TZA1EI01,EIS Server,10.4.1.100,general1-4,TZA1EI01_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-FE,TZS1EI01,EIS Server,10.4.4.100,general1-4,TZS1EI01_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-FE,TZS2EI01,EIS Server,10.4.7.100,general1-4,TZS2EI01_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1EI01,EIS Server,10.5.21.100,general1-4,TZD1EI01_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2EI01,EIS Server,10.5.22.100,general1-4,TZD2EI01_bootvol,80,winbase
+Kenya AMS,KE-AMS-BE,KEA1MX01,iSCSI Server,10.2.3.109,general1-4,KEA1MX01_bootvol,320,iscsi
+Kenya SIT1,KE-SIT1-BE,KES1MX01,iSCSI Server,10.2.6.109,general1-4,KES1MX01_bootvol,320,iscsi
+Kenya SIT2,KE-SIT2-BE,KES2MX01,iSCSI Server,10.2.9.109,general1-4,KES2MX01_bootvol,320,iscsi
+Kenya SIT3,KE-SIT3-BE,KES3MX01,iSCSI Server,10.2.12.109,general1-4,KES3MX01_bootvol,320,iscsi
+Kenya SIT4,KE-SIT4-BE,KES4MX01,iSCSI Server,10.2.15.109,general1-4,KES4MX01_bootvol,320,iscsi
+MZ AMS,MZ-AMS-BE,MZA1MX01,ISCSI Server,10.3.3.109,general1-4,MZA1MX01_bootvol,320,iscsi
+MZ SIT1,MZ-SIT1-BE,MZS1MX01,ISCSI Server,10.3.6.109,general1-4,MZS1MX01_bootvol,320,iscsi
+Tanzania AMS,TZ-AMS-BE,TZA1MX01,ISCSI Server,10.4.3.106,general1-4,TZA1MX01_bootvol,320,iscsi
+Tanzania SIT1,TZ-SIT1-BE,TZS1MX01,ISCSI Server,10.4.6.106,general1-4,TZS1MX01_bootvol,320,iscsi
+Tanzania SIT2,TZ-SIT2-BE,TZS2MX01,ISCSI Server,10.4.9.106,general1-4,TZS2MX01_bootvol,320,iscsi
+Kenya Dev 1,KE-DEV1,KED1MX01,iSCSI Sever,10.5.1.116,general1-4,KED1MX01_bootvol,320,iscsi
+Kenya Dev 2,KE-DEV2,KED2MX01,iSCSI Sever,10.5.2.116,general1-4,KED2MX01_bootvol,320,iscsi
+Kenya Dev 3,KE-DEV3,KED3MX01,iSCSI Sever,10.5.3.116,general1-4,KED3MX01_bootvol,320,iscsi
+MZ Dev 1,MZ-DEV1,MZD1MX01,iSCSI Sever,10.5.11.117,general1-4,MZD1MX01_bootvol,320,iscsi
+TZ Dev 1,TZ-DEV1,TZD1MX01,iSCSI Sever,10.5.21.113,general1-4,TZD1MX01_bootvol,320,iscsi
+TZ Dev 2,TZ-DEV2,TZD2MX01,iSCSI Sever,10.5.22.113,general1-4,TZD2MX01_bootvol,320,iscsi
+MZ AMS,MZ-AMS-FE,MZA1LI01,LIS Server,10.3.1.100,general1-4,MZA1LI01_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1LI01,LIS Server,10.5.11.100,general1-4,MZD1LI01_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-FE,MZS1LI01,LIS Server,10.3.4.100,general1-4,MZS1LI01_bootvol,80,winbase
+Kenya AMS,KE-AMS-APP,KEA1MQ01a,MQ Single Node ,10.2.2.102,general1-4,KEA1MQ01a_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1MQ01a,MQ Single Node ,10.5.1.102,general1-4,KED1MQ01a_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2MQ01a,MQ Single Node ,10.5.2.102,general1-4,KED2MQ01a_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3MQ01a,MQ Single Node ,10.5.3.102,general1-4,KED3MQ01a_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-APP,KES1MQ01a,MQ Single Node ,10.2.5.102,general1-4,KES1MQ01a_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-APP,KES2MQ01a,MQ Single Node ,10.2.8.102,general1-4,KES2MQ01a_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-APP,KES3MQ01a,MQ Single Node ,10.2.11.102,general1-4,KES3MQ01a_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-APP,KES4MQ01a,MQ Single Node ,10.2.14.102,general1-4,KES4MQ01a_bootvol,80,winbase
+MZ AMS,MZ-AMS-APP,MZA1MQ01a,MQ Single Node ,10.3.2.102,general1-4,MZA1MQ01a_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1MQ01a,MQ Single Node ,10.5.11.103,general1-4,MZD1MQ01a_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-APP,MZS1MQ01a,MQ Single Node ,10.3.5.102,general1-4,MZS1MQ01a_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-APP,TZA1MQ01a,MQ Single Node ,10.4.2.102,general1-4,TZA1MQ01a_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-APP,TZS1MQ01a,MQ Single Node ,10.4.5.102,general1-4,TZS1MQ01a_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-APP,TZS2MQ01a,MQ Single Node ,10.4.8.102,general1-4,TZS2MQ01a_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1MQ01a,MQ Single Node ,10.5.21.102,general1-4,TZD1MQ01a_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2MQ01a,MQ Single Node ,10.5.22.102,general1-4,TZD2MQ01a_bootvol,80,winbase
+Kenya AMS,KE-AMS-BE,KEA1DB04a,ODS DB Single Node ,10.2.3.106,general1-4,KEA1DB04a_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1DB04a,ODS DB Single Node ,10.5.1.113,general1-4,KED1DB04a_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2DB04a,ODS DB Single Node ,10.5.2.113,general1-4,KED2DB04a_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3DB04a,ODS DB Single Node ,10.5.3.113,general1-4,KED3DB04a_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-BE,KES1DB04a,ODS DB Single Node ,10.2.6.106,general1-4,KES1DB04a_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-BE,KES2DB04a,ODS DB Single Node ,10.2.9.106,general1-4,KES2DB04a_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-BE,KES3DB04a,ODS DB Single Node ,10.2.12.106,general1-4,KES3DB04a_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-BE,KES4DB04a,ODS DB Single Node ,10.2.15.106,general1-4,KES4DB04a_bootvol,80,winbase
+MZ AMS,MZ-AMS-BE,MZA1DB04a,ODS DB Single Node ,10.3.3.106,general1-4,MZA1DB04a_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1DB04a,ODS DB Single Node ,10.5.11.114,general1-4,MZD1DB04a_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-BE,MZS1DB04a,ODS DB Single Node ,10.3.6.106,general1-4,MZS1DB04a_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-BE,TZA1DB04a,ODS DB Single Node ,10.4.3.103,general1-4,TZA1DB04a_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-BE,TZS1DB04a,ODS DB Single Node ,10.4.6.103,general1-4,TZS1DB04a_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-BE,TZS2DB04a,ODS DB Single Node ,10.4.9.103,general1-4,TZS2DB04a_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1DB04a,ODS DB Single Node ,10.5.21.110,general1-4,TZD1DB04a_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2DB04a,ODS DB Single Node ,10.5.22.110,general1-4,TZD2DB04a_bootvol,80,winbase
+Kenya AMS,KE-AMS-BE,KEA1DB01a,OLTP DB Single Node ,10.2.3.100,general1-4,KEA1DB01a_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1DB01a,OLTP DB Single Node ,10.5.1.107,general1-4,KED1DB01a_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2DB01a,OLTP DB Single Node ,10.5.2.107,general1-4,KED2DB01a_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3DB01a,OLTP DB Single Node ,10.5.3.107,general1-4,KED3DB01a_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-BE,KES1DB01a,OLTP DB Single Node ,10.2.6.100,general1-4,KES1DB01a_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-BE,KES2DB01a,OLTP DB Single Node ,10.2.9.100,general1-4,KES2DB01a_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-BE,KES3DB01a,OLTP DB Single Node ,10.2.12.100,general1-4,KES3DB01a_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-BE,KES4DB01a,OLTP DB Single Node ,10.2.15.100,general1-4,KES4DB01a_bootvol,80,winbase
+MZ AMS,MZ-AMS-BE,MZA1DB01a,OLTP DB Single Node ,10.3.3.100,general1-4,MZA1DB01a_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1DB01a,OLTP DB Single Node ,10.5.11.108,general1-4,MZD1DB01a_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-BE,MZS1DB01a,OLTP DB Single Node ,10.3.6.100,general1-4,MZS1DB01a_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-BE,TZA1DB01a,OLTP DB Single Node ,10.4.3.100,general1-4,TZA1DB01a_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-BE,TZS1DB01a,OLTP DB Single Node ,10.4.6.100,general1-4,TZS1DB01a_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-BE,TZS2DB01a,OLTP DB Single Node ,10.4.9.100,general1-4,TZS2DB01a_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1DB01a,OLTP DB Single Node ,10.5.21.107,general1-4,TZD1DB01a_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2DB01a,OLTP DB Single Node ,10.5.22.107,general1-4,TZD2DB01a_bootvol,80,winbase
+Kenya AMS,KE-AMS-FE,KEA1WB01,WEB Server,10.2.1.101,general1-4,KEA1WB01_bootvol,80,winbase
+Kenya Dev 1,KE-DEV1,KED1WB01,WEB Server,10.5.1.101,general1-4,KED1WB01_bootvol,80,winbase
+Kenya Dev 2,KE-DEV2,KED2WB01,WEB Server,10.5.2.101,general1-4,KED2WB01_bootvol,80,winbase
+Kenya Dev 3,KE-DEV3,KED3WB01,WEB Server,10.5.3.101,general1-4,KED3WB01_bootvol,80,winbase
+Kenya SIT1,KE-SIT1-FE,KES1WB01,WEB Server,10.2.4.101,general1-4,KES1WB01_bootvol,80,winbase
+Kenya SIT2,KE-SIT2-FE,KES2WB01,WEB Server,10.2.7.101,general1-4,KES2WB01_bootvol,80,winbase
+Kenya SIT3,KE-SIT3-FE,KES3WB01,WEB Server,10.2.10.101,general1-4,KES3WB01_bootvol,80,winbase
+Kenya SIT4,KE-SIT4-FE,KES4WB01,WEB Server,10.2.13.101,general1-4,KES4WB01_bootvol,80,winbase
+MZ AMS,MZ-AMS-FE,MZA1WB01,WEB Server,10.3.1.102,general1-4,MZA1WB01_bootvol,80,winbase
+MZ Dev 1,MZ-DEV1,MZD1WB01,WEB Server,10.5.11.102,general1-4,MZD1WB01_bootvol,80,winbase
+MZ SIT1,MZ-SIT1-FE,MZS1WB01,WEB Server,10.3.4.102,general1-4,MZS1WB01_bootvol,80,winbase
+Tanzania AMS,TZ-AMS-FE,TZA1WB01,WEB Server,10.4.1.101,general1-4,TZA1WB01_bootvol,80,winbase
+Tanzania SIT1,TZ-SIT1-FE,TZS1WB01,WEB Server,10.4.4.101,general1-4,TZS1WB01_bootvol,80,winbase
+Tanzania SIT2,TZ-SIT2-FE,TZS2WB01,WEB Server,10.4.7.101,general1-4,TZS2WB01_bootvol,80,winbase
+TZ Dev 1,TZ-DEV1,TZD1WB01,WEB Server,10.5.21.101,general1-4,TZD1WB01_bootvol,80,winbase
+TZ Dev 2,TZ-DEV2,TZD2WB01,WEB Server,10.5.22.101,general1-4,TZD2WB01_bootvol,80,winbase

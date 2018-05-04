@@ -1,0 +1,77 @@
+footprint: Tanzania AMS
+servers:
+  TZA1AP01:
+    description: App Server
+    flavor: general1-4
+    hostname: TZA1AP01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-APP: 10.4.2.100}
+    vlan: RC-CLOUD-TZ-AMS-APP
+    volume: TZA1AP01_bootvol
+    volume_size: 80
+  TZA1CL01:
+    description: Cache Server
+    flavor: general1-4
+    hostname: TZA1CL01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-APP: 10.4.2.101}
+    vlan: RC-CLOUD-TZ-AMS-APP
+    volume: TZA1CL01_bootvol
+    volume_size: 80
+  TZA1DB01a:
+    description: OLTP DB Single Node
+    flavor: general1-4
+    hostname: TZA1DB01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-BE: 10.4.3.100}
+    vlan: RC-CLOUD-TZ-AMS-BE
+    volume: TZA1DB01a_bootvol
+    volume_size: 80
+  TZA1DB04a:
+    description: ODS DB Single Node
+    flavor: general1-4
+    hostname: TZA1DB04a
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-BE: 10.4.3.103}
+    vlan: RC-CLOUD-TZ-AMS-BE
+    volume: TZA1DB04a_bootvol
+    volume_size: 80
+  TZA1EI01:
+    description: EIS Server
+    flavor: general1-4
+    hostname: TZA1EI01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-FE: 10.4.1.100}
+    vlan: RC-CLOUD-TZ-AMS-FE
+    volume: TZA1EI01_bootvol
+    volume_size: 80
+  TZA1MQ01a:
+    description: MQ Single Node
+    flavor: general1-4
+    hostname: TZA1MQ01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-APP: 10.4.2.102}
+    vlan: RC-CLOUD-TZ-AMS-APP
+    volume: TZA1MQ01a_bootvol
+    volume_size: 80
+  TZA1MX01:
+    description: ISCSI Server
+    flavor: general1-4
+    hostname: TZA1MX01
+    image: iscsi
+    ip-addresses: {RC-CLOUD-TZ-AMS-BE: 10.4.3.106}
+    vlan: RC-CLOUD-TZ-AMS-BE
+    volume: TZA1MX01_bootvol
+    volume_size: 320
+  TZA1WB01:
+    description: WEB Server
+    flavor: general1-4
+    hostname: TZA1WB01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-AMS-FE: 10.4.1.101}
+    vlan: RC-CLOUD-TZ-AMS-FE
+    volume: TZA1WB01_bootvol
+    volume_size: 80
+  images: {iscsi: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi1: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    iscsi2: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi3: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    winbase: 85533cc6-6776-460c-a5f5-b9b0c7ed915d, winbase1: 85533cc6-6776-460c-a5f5-b9b0c7ed915d}

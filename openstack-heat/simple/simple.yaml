@@ -1,0 +1,31 @@
+heat_template_version: 2013-05-23
+
+parameters:
+    #
+    key_name:
+        type: string
+        description: Name of keypair for compute instances
+    
+    image_id:
+        type: string
+        description: Image to be used for compute instance
+        default: Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)
+
+    instance_type:
+        type: string
+        description: Instance type to be used for compute instances
+        default: 4 GB Performance
+        constraints:
+            - allowed_values: [1 GB Performance, 2 GB Performance, 4 GB Performance ]
+              description: "Value must be one of 1 GB Performance, 2 GB Performance, 4 GB Performance"
+
+resources:
+    db_instance:
+        type: OS::Nova::Server
+        properties:
+            key_name: { get_param: key_name }
+            image: { get_param: image_id }
+            flavor: { get_param: instance_type }
+            networks:
+            - uuid: 11111111-1111-1111-1111-111111111111
+

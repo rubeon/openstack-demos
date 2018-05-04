@@ -1,0 +1,111 @@
+heat_template_version: 2013-05-23
+
+parameters:
+    #
+    key_name:
+        type: string
+        description: Name of keypair for compute instances
+    
+    image_id:
+        type: string
+        description: Image to be used for compute instance
+        default: Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)
+        
+    instance_type:
+        type: string
+        description: Instance type to be used for compute instances
+        default: 4 GB Performance
+        constraints:
+            - allowed_values: [1 GB Performance, 2 GB Performance, 4 GB Performance ]
+              description: "Value must be one of 1 GB Performance, 2 GB Performance, 4 GB Performance"
+              
+    domain_name:
+        type: string
+        description: domain for hostnames
+        default: cloud.hokeypokeyland.org
+
+resources:
+    db_instance:
+        type: OS::Nova::Server
+        properties:
+            key_name: { get_param: key_name }
+            image: { get_param: image_id }
+            flavor: { get_param: instance_type }
+            flavor_update_policy: RESIZE
+            metadata:
+                ehw-stack: dbstack
+                ehw-owner: ehw
+            user_data_format: RAW
+            config_drive: "true"
+            user_data: |
+                #!/bin/bash
+
+                # NUM_NODES=10
+                # RELEASE="trusty"
+                # SSH_KEY="/root/.ssh/id_rsa.pub"
+
+                NUM_NODES=2
+                RELEASE="trusty"
+                SSH_KEY="/root/.ssh/id_rsa.pub"
+                # make key
+                ssh-keygen -f ~/.ssh/id_rsa -N ''
+                echo "Creating ${NUM_NODES} nodes..."
+                apt-get update
+                apt-get install -y lxc joe python-pip python-apt
+                make_node() {
+                    i=$1
+                    echo "Creating ${i}"
+                  	lxc-create -t ubuntu -n ${i} -- -r ${RELEASE}
+                  	[ -d /var/lib/lxc/${i}/rootfs/ ] && (
+                    mkdir -m 700 /var/lib/lxc/${i}/rootfs/root/.ssh/
+                  	install -m 600 ${SSH_KEY} /var/lib/lxc/${i}/rootfs/root/.ssh/authorized_keys
+                    cat conf/id_rsa_ewmb.pub >> /var/lib/lxc/${i}/rootfs/root/.ssh/authorized_keys
+                  	chroot /var/lib/lxc/${i}/rootfs/  apt-get install -y python-apt python-pip joe
+                  	)|sed "s/^/[${i}]:/"
+                  	lxc-start -n ${i} -d
+                  	# remove host checking error hopefully
+                  	ssh-keygen -f "/root/.ssh/known_hosts" -R ${i}
+                }
+
+                # update once on the cached container
+                chroot /var/cache/lxc/trusty/rootfs-amd64/ apt-get update
+
+                # create clients
+                for i in $(seq -w 1 ${NUM_NODES});
+                  do
+                      make_node "ansible-client-${i}"
+                  done
+
+                # create controller node
+                i="ansible-workstation"
+                # lxc-create -t ubuntu -n ${i} -- -r trusty
+                make_node "ansible-workstation"
+
+                # for later, create tower node
+                make_node "ansible-tower"
+
+                ansible -i inventory/ -m ping all
+
+    dns_record:
+        type: "Rackspace::Cloud::DNS"
+        depends_on: db_instance
+        properties:
+            emailAddress: "eric@subcritical.org"
+            name: dev.hokeypokeyland.org
+            ttl: "301"
+            # records: [{"name": "db-server.dev.hokeypokeyland.org", "data": { get_attr: [db_instance, accessIPv4] }, "type": "A", "ttl":"301" }]
+            records:
+            - name: "db-server.dev.hokeypokeyland.org"
+              data: { get_attr: [db_instance, accessIPv4]}
+              type: A
+            - name: "db-server.dev.hokeypokeyland.org"
+              data: { get_attr: [db_instance, accessIPv6]}
+              type: AAAA
+
+                
+
+outputs:
+    instance_ip:
+        description: "The IP Address of the deployed instance"
+        value: { get_attr: [db_instance, accessIPv4 ]}
+        

@@ -1,0 +1,86 @@
+footprint: Kenya SIT1
+servers:
+  KES1AP01:
+    description: App Server
+    flavor: general1-4
+    hostname: KES1AP01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-APP: 10.2.5.100}
+    vlan: RC-CLOUD-KE-SIT1-APP
+    volume: KES1AP01_bootvol
+    volume_size: 80
+  KES1CL01:
+    description: Cache Server
+    flavor: general1-4
+    hostname: KES1CL01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-APP: 10.2.5.101}
+    vlan: RC-CLOUD-KE-SIT1-APP
+    volume: KES1CL01_bootvol
+    volume_size: 80
+  KES1DB01a:
+    description: OLTP DB Single Node
+    flavor: general1-4
+    hostname: KES1DB01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-BE: 10.2.6.100}
+    vlan: RC-CLOUD-KE-SIT1-BE
+    volume: KES1DB01a_bootvol
+    volume_size: 80
+  KES1DB02a:
+    description: DIST DB Single Node
+    flavor: general1-4
+    hostname: KES1DB02a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-BE: 10.2.6.103}
+    vlan: RC-CLOUD-KE-SIT1-BE
+    volume: KES1DB02a_bootvol
+    volume_size: 80
+  KES1DB04a:
+    description: ODS DB Single Node
+    flavor: general1-4
+    hostname: KES1DB04a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-BE: 10.2.6.106}
+    vlan: RC-CLOUD-KE-SIT1-BE
+    volume: KES1DB04a_bootvol
+    volume_size: 80
+  KES1EI01:
+    description: EIS Server
+    flavor: general1-4
+    hostname: KES1EI01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-FE: 10.2.4.100}
+    vlan: RC-CLOUD-KE-SIT1-FE
+    volume: KES1EI01_bootvol
+    volume_size: 80
+  KES1MQ01a:
+    description: MQ Single Node
+    flavor: general1-4
+    hostname: KES1MQ01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-APP: 10.2.5.102}
+    vlan: RC-CLOUD-KE-SIT1-APP
+    volume: KES1MQ01a_bootvol
+    volume_size: 80
+  KES1MX01:
+    description: iSCSI Server
+    flavor: general1-4
+    hostname: KES1MX01
+    image: iscsi
+    ip-addresses: {RC-CLOUD-KE-SIT1-BE: 10.2.6.109}
+    vlan: RC-CLOUD-KE-SIT1-BE
+    volume: KES1MX01_bootvol
+    volume_size: 320
+  KES1WB01:
+    description: WEB Server
+    flavor: general1-4
+    hostname: KES1WB01
+    image: winbase
+    ip-addresses: {RC-CLOUD-KE-SIT1-FE: 10.2.4.101}
+    vlan: RC-CLOUD-KE-SIT1-FE
+    volume: KES1WB01_bootvol
+    volume_size: 80
+  images: {iscsi: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi1: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    iscsi2: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi3: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    winbase: 85533cc6-6776-460c-a5f5-b9b0c7ed915d, winbase1: 85533cc6-6776-460c-a5f5-b9b0c7ed915d}

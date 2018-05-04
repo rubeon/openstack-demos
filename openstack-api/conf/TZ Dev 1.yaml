@@ -1,0 +1,77 @@
+footprint: TZ Dev 1
+servers:
+  TZD1AP01:
+    description: App Server
+    flavor: general1-4
+    hostname: TZD1AP01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.105}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1AP01_bootvol
+    volume_size: 80
+  TZD1CL01:
+    description: Cache Server
+    flavor: general1-4
+    hostname: TZD1CL01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.106}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1CL01_bootvol
+    volume_size: 80
+  TZD1DB01a:
+    description: OLTP DB Single Node
+    flavor: general1-4
+    hostname: TZD1DB01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.107}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1DB01a_bootvol
+    volume_size: 80
+  TZD1DB04a:
+    description: ODS DB Single Node
+    flavor: general1-4
+    hostname: TZD1DB04a
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.110}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1DB04a_bootvol
+    volume_size: 80
+  TZD1EI01:
+    description: EIS Server
+    flavor: general1-4
+    hostname: TZD1EI01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.100}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1EI01_bootvol
+    volume_size: 80
+  TZD1MQ01a:
+    description: MQ Single Node
+    flavor: general1-4
+    hostname: TZD1MQ01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.102}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1MQ01a_bootvol
+    volume_size: 80
+  TZD1MX01:
+    description: iSCSI Sever
+    flavor: general1-4
+    hostname: TZD1MX01
+    image: iscsi
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.113}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1MX01_bootvol
+    volume_size: 320
+  TZD1WB01:
+    description: WEB Server
+    flavor: general1-4
+    hostname: TZD1WB01
+    image: winbase
+    ip-addresses: {RC-CLOUD-TZ-DEV1: 10.5.21.101}
+    vlan: RC-CLOUD-TZ-DEV1
+    volume: TZD1WB01_bootvol
+    volume_size: 80
+  images: {iscsi: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi1: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    iscsi2: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi3: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    winbase: 85533cc6-6776-460c-a5f5-b9b0c7ed915d, winbase1: 85533cc6-6776-460c-a5f5-b9b0c7ed915d}

@@ -1,0 +1,95 @@
+footprint: MZ AMS
+servers:
+  MZA1AP01:
+    description: App Server
+    flavor: general1-4
+    hostname: MZA1AP01
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-APP: 10.3.2.100}
+    vlan: RC-CLOUD-MZ-AMS-APP
+    volume: MZA1AP01_bootvol
+    volume_size: 80
+  MZA1CL01:
+    description: Cache Server
+    flavor: general1-4
+    hostname: MZA1CL01
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-APP: 10.3.2.101}
+    vlan: RC-CLOUD-MZ-AMS-APP
+    volume: MZA1CL01_bootvol
+    volume_size: 80
+  MZA1DB01a:
+    description: OLTP DB Single Node
+    flavor: general1-4
+    hostname: MZA1DB01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-BE: 10.3.3.100}
+    vlan: RC-CLOUD-MZ-AMS-BE
+    volume: MZA1DB01a_bootvol
+    volume_size: 80
+  MZA1DB02a:
+    description: DIST DB Single Node
+    flavor: general1-4
+    hostname: MZA1DB02a
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-BE: 10.3.3.103}
+    vlan: RC-CLOUD-MZ-AMS-BE
+    volume: MZA1DB02a_bootvol
+    volume_size: 80
+  MZA1DB04a:
+    description: ODS DB Single Node
+    flavor: general1-4
+    hostname: MZA1DB04a
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-BE: 10.3.3.106}
+    vlan: RC-CLOUD-MZ-AMS-BE
+    volume: MZA1DB04a_bootvol
+    volume_size: 80
+  MZA1EI01:
+    description: EIS Server
+    flavor: general1-4
+    hostname: MZA1EI01
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-FE: 10.3.1.101}
+    vlan: RC-CLOUD-MZ-AMS-FE
+    volume: MZA1EI01_bootvol
+    volume_size: 80
+  MZA1LI01:
+    description: LIS Server
+    flavor: general1-4
+    hostname: MZA1LI01
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-FE: 10.3.1.100}
+    vlan: RC-CLOUD-MZ-AMS-FE
+    volume: MZA1LI01_bootvol
+    volume_size: 80
+  MZA1MQ01a:
+    description: MQ Single Node
+    flavor: general1-4
+    hostname: MZA1MQ01a
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-APP: 10.3.2.102}
+    vlan: RC-CLOUD-MZ-AMS-APP
+    volume: MZA1MQ01a_bootvol
+    volume_size: 80
+  MZA1MX01:
+    description: ISCSI Server
+    flavor: general1-4
+    hostname: MZA1MX01
+    image: iscsi
+    ip-addresses: {RC-CLOUD-MZ-AMS-BE: 10.3.3.109}
+    vlan: RC-CLOUD-MZ-AMS-BE
+    volume: MZA1MX01_bootvol
+    volume_size: 320
+  MZA1WB01:
+    description: WEB Server
+    flavor: general1-4
+    hostname: MZA1WB01
+    image: winbase
+    ip-addresses: {RC-CLOUD-MZ-AMS-FE: 10.3.1.102}
+    vlan: RC-CLOUD-MZ-AMS-FE
+    volume: MZA1WB01_bootvol
+    volume_size: 80
+  images: {iscsi: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi1: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    iscsi2: d8df5db8-2c82-484d-99a9-f3517721dd74, iscsi3: d8df5db8-2c82-484d-99a9-f3517721dd74,
+    winbase: 85533cc6-6776-460c-a5f5-b9b0c7ed915d, winbase1: 85533cc6-6776-460c-a5f5-b9b0c7ed915d}
