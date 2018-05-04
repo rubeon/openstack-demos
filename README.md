@@ -11,6 +11,10 @@ This is a talk that I gave at *DOXLON* February 2015. It is a high-level
 overview of Openstack Heat and how it fits into software-defined 
 infrastructure environments.
 
+
+https://blog.outlyer.com/2015/03/03/doxlon-devops-exchange-dec14-software-defined-infrastructure/
+https://www.youtube.com/watch?v=EY-yNymyiIA
+
 ### Openstack API
 
 - `vcauto` is a small application that uses the Rackspace Nova-based API 
