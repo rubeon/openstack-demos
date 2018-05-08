@@ -1,0 +1,26 @@
+ansible_ssh_user: vagrant
+ansible_ssh_private_key_file: files/vagrant_key
+domain: dom.example.com
+resolvers: "{{ siteconfig[site_name][application_environment]['resolvers'] }}"
+freeipaclient_server: freeipa.dom.example.com
+freeipaclient_domain: "{{ application_name }}.{{ application_environment }}.{{ domain }}"
+freeipaclient_enroll_user: "{{ ipa_user }}"
+freeipaclient_enroll_pass: "{{ ipa_password }}"
+freeipaclient_all_ip_addresses: true
+freeipaclient_hostname: "{{ fqdn }}"
+freeipaclient_force_join: true
+vcenter_hostname: vsphere.example.com
+vsphere_folder: "{{ site_name }}-powerdns-{{ application_environment }}"
+# template_name: "{{ site_name }}-powerdns-stg1-centos-7.3.template"
+# template_name: zone1-pdnspoc-stg1-centos-7.3-inf2.template
+# template_name: pdnspoc-centos-7.3.template
+# template_name: pdns-centos-yo5Lahsu.tmp
+template_name: pdns-centos-7.3.tmp
+resource_pool: "{{ site_name }}-{{ application_name }}-resource-pool-{{ application_environment }}"
+network_type: dvs
+pdns_api_key: omgkey
+pdns_api_port: 8081
+local_zones:
+  - name: "{{ application_environment }}.{{ domain }}"
+    nameservers:
+      - 172.16.1.254

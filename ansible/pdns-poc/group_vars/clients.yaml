@@ -1,0 +1,7 @@
+#
+#  clients.yaml
+# resolvers should be set to the AnyCast IP addresses that are pointing at the 
+# DNS Slaves
+
+resolvers: 
+  - "{{ hostvars[dns_slave_1]['ansible_all_ipv4_addresses'][0] }}"  

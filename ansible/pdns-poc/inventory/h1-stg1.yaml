@@ -1,0 +1,59 @@
+db_masters:
+    hosts:
+        db_master_1:
+            hostname: mdb01
+            network: db2
+db_slaves:
+    hosts:
+        db_slave_1:
+            hostname: mds01
+            network: db2
+dns_masters:
+    hosts:
+        dns_master_1:
+            hostname: dns01
+            network: inf2
+dns_slaves:
+    hosts:
+        dns_slave_1:
+            hostname: dsl01
+            network: inf2
+clients:
+    hosts:
+        client_1:
+            hostname: clt01
+            network: inf2
+        client_2:
+            hostname: clt02
+            network: inf2
+            # groups:
+            #     - clients
+            #     - poc
+
+        client_3:
+            hostname: clt03
+            network: inf2
+            # groups:
+            #     - clients
+            #     - poc
+dns:
+    children:
+        dns_masters:
+        dns_slaves:
+db:
+    children:
+        db_masters:
+        db_slaves:
+
+poc:
+    children:
+        dns:
+        db:
+        clients:
+
+zone1_stg1:
+    children:
+        poc:
+all:
+    children:
+        poc:

@@ -1,0 +1,9 @@
+mysql_databases:
+    - name: foodata
+      state: present
+    - name: bardata
+      state: present
+    - name: "{{ pdns_database_name }}"
+      state: present
+mysql_replication_role: master
+foo: db_masters

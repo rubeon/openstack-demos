@@ -1,0 +1,6 @@
+# hostnames
+site_name: v1
+domain: vagrant.dev
+application_name: pdnspoc
+application_environment: dev
+clus_name: v01

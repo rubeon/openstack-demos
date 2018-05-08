@@ -1,0 +1,14 @@
+---
+
+- name: Ensure the PowerDNS configuration directory exists
+  file:
+    name: "{{ pdns_config_dir }}"
+    state: directory
+    owner: "root"
+    group: "root"
+
+- name: Generate the PowerDNS configuration
+  template:
+    src: pdns.conf.j2
+    dest: "{{ pdns_config_dir }}/{{ pdns_config_file }}"
+  notify: Restart PowerDNS

@@ -1,0 +1,24 @@
+!
+interface {{ quagga_interface }}
+  ip ospf authentication message-digest
+  ip ospf message-digest-key 1 md5 {{ siteconfig[site_name][application_environment]['quagga_md5'] }}
+  ip ospf priority 0
+!
+interface lo
+!
+interface lo:0
+!
+router ospf
+  ospf router-id {{ siteconfig[site_name][application_environment]['quagga_router_id'] }}  
+  log-adjacency-changes
+  area {{ siteconfig[site_name][application_environment]['quagga_router_id'] }} authentication message-digest
+  area {{ siteconfig[site_name][application_environment]['quagga_router_id'] }} nssa
+  network {{  netmask|ipaddr('net') }} area {{ siteconfig[site_name][application_environment]['quagga_area'] }}
+  redistribute connected metric-type 1
+  distribute-list ANYCAST out connected
+!
+access-list ANYCAST permit {{ quagga_anycast_address }}/32
+
+log file /var/log/quagga/ospfd.log
+
+!

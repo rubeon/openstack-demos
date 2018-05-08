@@ -1,0 +1,13 @@
+mysql_root_password: Fo
+mysql_enabled_on_startup: yes
+mysql_packages:
+  - mariadb
+  - mariadb-server
+# mysql_root_password_update: yes
+mysql_replication_user:
+    name: repl
+    password: Oh
+    host: '%'
+foo: db
+mysql_master: "{{ groups['db_masters'][0] }}"
+mysql_replication_master: "{{ hostvars[mysql_master]['ansible_fqdn'] }}"

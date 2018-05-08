@@ -1,0 +1,97 @@
+- hosts: v1-dev
+  become: true
+  tasks:
+      - include: tasks/prepare_systems.yaml
+      - include: tasks/setup_repos.yaml
+  vars_files:
+    - vars/siteconfig.yaml
+#
+- hosts: db
+  become: true
+  roles:
+      - role: mysql
+  tasks:
+      - include: tasks/db.yaml
+  vars:
+      - mysql_replication_master: "{{ hostvars['db_master']['ansible_all_ipv4_addresses'][0] }}"
+  vars_files:
+      - vars/powerdns_db.yaml
+      - vars/siteconfig.yaml
+- hosts: db_masters
+  become: true
+  gather_facts: yes
+  vars_files:
+      - vars/powerdns_db.yaml
+      - vars/siteconfig.yaml
+  tasks:
+      - include: tasks/add_database_users.yaml
+#
+# - hosts: dns_masters
+#   vars:
+#     - fqdn: "v1dns-v01.vagrant.local"
+#
+#   vars_files:
+#       - vars/powerdns_db.yaml
+#       - group_vars/db.yaml
+#       - vars/siteconfig.yaml
+#   become: true
+#
+#   roles:
+#       - role: mysql
+#       - role: pdns
+#       - role: dns
+#         dns_domain: "{{ domain }}"
+#         dns_nameservers: "{{ resolvers }}"
+#
+#   tasks:
+#       - include: tasks/setup_powerdns_db.yaml
+#
+- hosts: dns_slaves
+  gather_facts: y
+  become: true
+  vars_files:
+      - vars/siteconfig.yaml
+  roles:
+      - role: pdns
+      - role: pdns_recursor
+      - role: dns
+        dns_domain: "{{ domain }}"
+        dns_nameservers: ['127.0.0.1']
+  tasks:
+    - include: tasks/setup_powerdns_slave.yaml
+
+
+- hosts: clients
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/siteconfig.yaml
+  roles:
+      - role: ansible-role-dns
+        dns_domain: localdomain
+        dns_nameservers: "{{ groups['dns_slaves']|map('extract', hostvars, 'private_ip')|list }}"
+        
+- hosts: dns_masters
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/siteconfig.yaml
+  vars:
+    - netmask: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
+  roles:
+    - role: anycast
+
+- hosts: dns_masters
+  vars_files:
+      - vars/siteconfig.yaml
+      - vars/powerdns_db.yaml
+  become: true
+  roles:
+      - role: mysql
+      - role: pdns
+      - role: dns
+        dns_domain: localdomain
+        dns_nameservers: "{{ resolvers }}"
+  tasks:
+      - include: tasks/setup_powerdns_db.yaml
+      - include: tasks/setup_powerdns_records.yaml

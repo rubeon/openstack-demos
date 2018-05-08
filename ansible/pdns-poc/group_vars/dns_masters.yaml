@@ -1,0 +1,21 @@
+db_master: "{{ groups['db_masters'][0] }}"
+is_pdns_master: true 
+# pdns masters use mysql as the backend
+pdns_backends:
+  gmysql:
+    host: "{{ hostvars[db_master]['ansible_all_ipv4_addresses'][0] }}"
+    port: 3306
+    user: "{{ pdns_database_user }}"
+    password: "{{ pdns_database_password}}"
+    dbname: "{{ pdns_database_name }}"
+pdns_config:
+  log-dns-queries: yes
+  master: yes
+  slave: no
+  local-port: 53
+  experimental-json-interface: yes
+  experimental-api-key: "{{ pdns_api_key }}"
+  webserver: yes
+  webserver-port: "{{ pdns_api_port }}"
+quagga_anycast_address: 10.247.129.4
+quagga_interface: eth0

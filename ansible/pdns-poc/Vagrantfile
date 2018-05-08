@@ -1,0 +1,79 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # config.vm.box = "centos/7"
+  # setup the database server
+  config.vm.box = "centos/7"
+  config.vm.network :private_network, type: 'dhcp'
+  config.vm.define "dns_master_1" do |current|
+    current.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+    end
+    # current.vm.network :private_network #, ip: '10.0.2.100'
+    current.vm.hostname = 'dns01'
+    
+  end
+  
+  config.vm.define "db_master" do |current|
+    current.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      
+    end
+    # current.vm.network :private_network #, ip: '10.0.2.101'
+    current.vm.hostname = 'mdb'
+    
+  end
+  
+  config.vm.define "db_slave_1" do |current|
+    current.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+    end
+    # current.vm.network :private_network #, ip: '10.0.2.102'
+    current.vm.hostname = 'mds'
+    
+  end
+  
+  config.vm.define "dns_slave_1" do |current|
+    current.vm.box = "centos/7"
+    current.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+    end
+    # current.vm.network :private_network #, ip: '10.0.2.103'
+    current.vm.hostname = 'dsl'
+    
+  end
+
+  config.vm.define "client_1" do |current|
+    current.vm.box = "centos/7"
+    current.vm.provider "virtualbox" do |vb|
+      vb.memory = "512"
+    end
+    # current.vm.network :private_network # , ip: '10.0.2.104'
+    current.vm.hostname = 'clt'
+    
+    # once the client boots, run the playbook
+    
+    current.vm.provision "ansible" do |ansible|
+      ansible.groups = {
+        'db_masters' => ['db_master'],
+        'db_slaves' => ['db_slave_1'],
+        'db' => ['db_master', 'db_slave_1'],
+        'dns' => ['dns_master_1', 'dns_slave_1'],
+        'dns_masters' => ['dns_master_1'],
+        'dns_slaves' => ['dns_slave_1'],
+        'clients' => ['client_1'],
+        'poc' => ['db_slave_1', 'db_master', 'dns_master_1', 'dns_slave_1', 'client_1'],
+        'v1-dev' => ['db_slave_1', 'db_master', 'dns_master_1', 'dns_slave_1', 'client_1']
+      }
+      ansible.extra_vars = {
+        'ansible_vagrant' => true,
+        'ansible_ssh_user' => 'vagrant'
+      }
+      # ansible.limit = 'v1-dev'
+      ansible.limit = 'dns_masters,db_masters'
+      ansible.verbose = 'vvvv'
+      ansible.playbook = "deploy-to-vagrant.yaml"
+    end  
+  end
+end

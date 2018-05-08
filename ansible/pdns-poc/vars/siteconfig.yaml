@@ -1,0 +1,95 @@
+#+ '/' + ansible_default_ipv4.netmask
+siteconfig:
+  v1:
+    dev:
+      quagga_router_id: 172.16.1.254
+      quagga_router_prefix: 25
+      quagga_md5: abcdefg0
+      quagga_area: 0.0.0.1
+      
+      resolvers:
+        - 8.8.4.4
+        
+  zone1:        
+    stg1:
+      quagga_router_id: 172.16.1.254
+      quagga_router_prefix: 25
+      quagga_md5: abcdefg1
+      quagga_area: 0.0.0.1
+      vcenter_cluster: VCLUSTER39
+      datacenter: VCenter DC Stage
+      resolvers:
+        - 172.16.3.6
+        # - 172.16.1.3
+        # - 172.16.1.4
+      vcenter_vlan_1:
+        standard:
+          inf1: dept-stg1-inf1-172.16.1.0_25
+          inf2: dept-stg1-inf2-172.16.1.128_25
+          be1: dept-wap-stg1-be1-172.16.24.0_23
+          be2: dept-wap-stg1-be2-172.16.28.0_23
+          be3: dept-wap-stg1-be3-172.16.34.0_23
+          db1: dept-stg1-db1-172.16.48.0_24
+          db2: dept-stg1-db2-172.16.49.0_24
+        dvs:
+          inf1: dv-dept-stg1-inf1-172.16.1.0_25
+          inf2: dv-dept-stg1-inf2-172.16.1.128_25
+          be1: dv-dept-wap-stg1-be1-172.16.24.0_23
+          be2: dv-dept-wap-stg1-be2-172.16.28.0_23
+          be3: dv-dept-wap-stg1-be3-172.16.34.0_23
+          db1: dv-dept-stg1-db1-172.16.48.0_24
+          db2: dv-dept-stg1-db2-172.16.49.0_24
+    stg2:
+      quagga_router_id: 172.16.1.254
+      quagga_router_prefix: 25
+      quagga_area: 0.0.0.1
+      vcenter_cluster: VCLUSTER3A
+      datacenter: VCenter DC Stage
+      resolvers:
+        - 172.16.1.3
+        - 172.16.1.4
+      vcenter_vlan_1:
+        standard:
+          inf1: dept-stg2-inf1-172.16.52.0_25
+          inf2: dept-stg2-inf2-172.16.52.128_25
+          be1: dept-wap-stg2-be1-172.16.38.0_23
+          be2: dept-wap-stg2-be2-172.16.42.0_23
+          be3: dept-wap-stg2-be3-172.16.46.0_23
+          db1: dept-stg2-db1-172.16.50.0_24
+          db2: dept-stg2-db2-172.16.51.0_24
+        dvs:
+          inf1: dv-dept-stg2-inf1-172.16.52.0_25
+          inf2: dv-dept-stg2-inf2-172.16.52.128_25
+          be1: dv-dept-wap-stg2-be1-172.16.38.0_23
+          be2: dv-dept-wap-stg2-be2-172.16.42.0_23
+          be3: dv-dept-wap-stg2-be3-172.16.46.0_23
+          db1: dv-dept-stg2-db1-172.16.50.0_24
+          db2: dv-dept-stg2-db2-172.16.51.0_24
+    int:
+      datacenter: VCenter DC Integration
+      vcenter_cluster: VCLUSTER1
+      vcenter_vlan_1:
+        standard:
+          inf1: dept-inf-inte-1-172.16.21.0_25
+          inf2: dept-inf-inte-2-172.16.1.128_25
+          be1: dept-wap-inte-be-1-172.16.4.0_23
+          be2: dept-wap-inte-be-2-172.16.8.0_23
+          be3: dept-wap-inte-be-3-172.16.12.0_23
+          db1: dept-inte-db-1-172.16.18.0_23
+          db2: dept-inte-db-2-172.16.20.0_24
+  zone2:
+    prd:
+      resolvers:
+        - 172.16.4.132
+        - 172.16.4.133
+        - 172.16.4.134
+    stg1:
+      resolvers:
+        - 172.16.2.7
+        - 172.16.2.8
+        - 172.16.2.9
+    int:
+      resolvers:
+        - 172.16.3.122
+        - 172.16.3.123
+

@@ -1,0 +1,18 @@
+foo: dns
+is_pdns_master: false # set to true in masters' group config file
+is_pdns_slave: false # set to true in slaves' group config file
+pdns_install_epel: false
+pdns_rec_install_epel: false
+quagga_config_ospfd: true
+quagga_debugging:
+  ospf:
+    enabled: true
+    debug:
+      - 'event'
+  zebra:
+    enabled: true
+    debug:
+      - 'events'
+quagga_enable_ospfd: true
+# quagga_interfaces:
+quagga_ospf_area:  0.0.0.1

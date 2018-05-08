@@ -1,0 +1,31 @@
+---
+
+galaxy_info:
+  author: PowerDNS Engineering Team
+  description: PowerDNS Recursor Role
+  company: PowerDNS.COM BV
+  license: MIT
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Debian
+      versions:
+        - jessie
+    - name: Ubuntu
+      versions:
+        - trusty
+        - utopic
+        - vivid
+        - wily
+        - xenial
+  galaxy_tags:
+    - system
+    - dns
+    - pdns
+    - powerdns
+    - pdns-recursor
+
+dependencies:
+  - src: atosatto.packages-extras

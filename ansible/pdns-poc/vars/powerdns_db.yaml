@@ -1,0 +1,7 @@
+# pdns_config:
+#   master: "{{ is_pdns_master }}"
+#   slave: "{{ is_pdns_slave }}"
+#   # local-address: "{{  }}"
+pdns_database_name: pdns
+pdns_database_password: p455w0rD
+pdns_database_user: pdns

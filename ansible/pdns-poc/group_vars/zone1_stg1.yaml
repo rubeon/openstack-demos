@@ -1,0 +1,5 @@
+# hostnames
+site_name: zone1
+application_name: pdnspoc
+application_environment: stg1
+clus_name: v01

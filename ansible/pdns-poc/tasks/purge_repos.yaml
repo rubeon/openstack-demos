@@ -1,0 +1,14 @@
+- name: Disable Repos
+  copy:
+      src: files/etc/yum.repos.d/{{ item }}
+      dest: /etc/yum.repos.d/{{ item }}
+  with_items:
+      - CentOS-Base.repo
+      - CentOS-CR.repo
+      - CentOS-Debuginfo.repo
+      - CentOS-fasttrack.repo
+      - CentOS-Media.repo
+      - CentOS-Sources.repo
+      - CentOS-Vault.repo
+  when: ansible_distribution == "CentOS"
+  tags: yum-config

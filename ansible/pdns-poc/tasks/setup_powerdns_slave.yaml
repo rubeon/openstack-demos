@@ -1,0 +1,21 @@
+- name: BIND configuration directory
+  file:
+    path: /etc/named/
+    state: directory
+    # owner: "{{ pdns_user }}"
+  notify: Restart PowerDNS
+  
+- name: BIND data directory
+  file:
+    path: /var/named/
+    state: directory
+    # owner: "{{ pdns_user }}"
+  notify: Restart PowerDNS
+
+- name: Copy bind configuration file
+  template:
+    src: templates/etc/named/named.conf.j2
+    dest: /etc/named/named.conf
+    # owner: "{{ pdns_user }}"
+  notify: Restart PowerDNS
+

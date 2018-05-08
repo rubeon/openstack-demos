@@ -1,0 +1,31 @@
+# - name: Foo
+#   debug:
+#     msg: "{{ mysql_replication_master }}"
+# - name: Replication Role
+#   debug:
+#     msg: "{{ mysql_replication_role }}"
+# - name: Replication Master
+#   debug:
+#     msg: "{{ mysql_replication_master }}"
+# - name: Replication User Name
+#   debug:
+#     msg: "{{ mysql_replication_user.name }}"
+# - name: Replication User Password
+#   debug:
+#     msg: "{{ mysql_replication_user.password }}"
+- name: Python MySQLdb Package
+  yum:
+      name: MySQL-python.x86_64
+      state: present
+
+- name: Fix Replication User
+  mysql_user:
+      name: "{{ mysql_replication_user.name }}"
+      host: "{{ item }}"
+      priv: "{{ mysql_replication_user.priv | default('*.*:REPLICATION SLAVE,REPLICATION CLIENT') }}"
+      state: present
+      password: "{{ mysql_replication_user.password }}"
+  with_items:
+      - localhost
+      - 127.0.0.1
+

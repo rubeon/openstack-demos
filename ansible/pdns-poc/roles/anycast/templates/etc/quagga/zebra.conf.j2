@@ -1,0 +1,13 @@
+hostname {% if ansible_fqdn is defined %}{{ ansible_fqdn }}{% else %}{{ ansible_hostname }}{% endif %}
+
+!
+interface eth0
+ ip address {{ ansible_default_ipv4.address }}/{{  netmask|ipaddr('prefix') }}
+!
+!interfae lo
+! ip address 127.0.0.1/8
+!
+interface lo:0
+ ip address {{ quagga_anycast_address }}/32
+
+log stdout

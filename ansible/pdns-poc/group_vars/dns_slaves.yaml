@@ -1,0 +1,24 @@
+#
+#  dns_slaves.yaml
+#
+# FIXME: AnyCast address for slaves should be put into here
+dns_forwarder: "{{ siteconfig[site_name][application_environment]['resolvers'][0] }}"
+is_pdns_slave: true
+pdns_config:
+    master: false
+    slave: true
+    log-dns-queries: yes
+    local-port: 53
+    recursor: 127.0.0.1:5300
+
+pdns_backends:
+    bind:
+        config: '/etc/named/named.conf'
+
+quagga_anycast_address: 172.16.3.3
+quagga_interface: eth0
+
+pdns_rec_config:
+  forward-zones: ".={{ dns_forwarder }},dom.example.com"
+  local-port: 5300
+  

@@ -1,0 +1,25 @@
+- name: Install Quagga
+  yum:
+    name: quagga
+    state: present
+  
+- name: Create OSPDF configuration file
+  template:
+    src: templates/etc/quagga/ospfd.conf.j2
+    dest: /etc/quagga/ospfd.conf
+  notify:
+    - Restart Quagga Services
+
+- name: Create Loopback Configuration 
+  template: 
+    src: templates/etc/sysconfig/network-scripts/ifcfg-lo_0.j2
+    dest: "/etc/sysconfig/network-scripts/ifcfg-lo:0"
+  notify:
+    - Bring up Loopback Interface
+
+- name: Create Zebra configuration file
+  template:
+    src: templates/etc/quagga/zebra.conf.j2
+    dest: /etc/quagga/zebra.conf
+  notify:
+    - Restart Zebra Services

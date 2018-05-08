@@ -1,0 +1,6 @@
+# mysql_replication_user:
+#     name: repl
+#     password: OhliepohY9obohfa
+#     host: '%'
+mysql_replication_role: slave
+foo: db_slaves

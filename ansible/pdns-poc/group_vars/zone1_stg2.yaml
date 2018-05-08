@@ -1,0 +1,6 @@
+# hostnames
+site_name: zone1
+application_name: pdnspoc
+application_environment: stg2
+clus_name: v01
+hostname: "{{ lookup(host_vars[inventory_hostname], 'hostname' ) }}"

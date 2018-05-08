@@ -1,0 +1,84 @@
+# - name: Resource Pool
+#   vmware_resource_pool:
+#     hostname: "{{ vcenter_server }}"
+#     username: "{{ vcenter_user }}"
+#     password: "{{ vcenter_password }}"
+#     cluster: "{{ siteconfig[site_name][application_environment]['vcenter_cluster'] }}"
+#     state: present
+#     validate_certs: no
+#     resource_pool: "{{ resource_pool }}"
+#     datacenter: "{{ siteconfig[site_name][application_environment]['datacenter'] }}"
+#   register: resource_pool
+
+# - name: Add resource pool to vCenter
+#     vmware_resource_pool:
+#       hostname: vcsa_host
+#       username: vcsa_user
+#       password: vcsa_pass
+#       datacenter: datacenter
+#       cluster: cluster
+#       resource_pool: resource_pool
+#       mem_shares: normal
+#       mem_limit: -1
+#       mem_reservation: 0
+#       mem_expandable_reservations: True
+#       cpu_shares: normal
+#       cpu_limit: -1
+#       cpu_reservation: 0
+#       cpu_expandable_reservations: True
+#       state: present
+
+- name: Dump Network
+  debug:
+    msg: "network: {{ siteconfig[site_name][application_environment]['vcenter_vlan_1'][network_type][network] }}"
+
+- name: Provision Guest
+  vsphere_guest:
+    vcenter_hostname: "{{ vcenter_server }}"
+    username: "{{ vcenter_user }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: no
+    guest: "{{ fqdn }}"
+    from_template: yes
+    template_src: "{{ template_name }}"
+    cluster: "{{ siteconfig[site_name][application_environment]['vcenter_cluster'] }}"
+    resource_pool: "/Resources/{{ resource_pool }}"
+    vm_nic:
+      nic1:
+        type: vmxnet3
+        network: "{{ siteconfig[site_name][application_environment]['vcenter_vlan_1'][network_type][network] }}"
+        network_type: "{{ network_type }}"
+    vmware_guest_facts: no
+  register: vms
+
+- name: Gather Facts about VM
+  vsphere_guest:
+    vcenter_hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_user }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: no
+    guest: "{{ fqdn }}"
+    vmware_guest_facts: yes
+  register: instance_facts
+
+# this will be there for 2.3
+# - name: Gather instance facts
+#   vmware_guest_facts:
+#       hostname: "{{ vcenter_server }}"
+#       validate_certs: false
+#       username: "{{ vcenter_user }}"
+#       password: "{{ vcenter_password }}"
+#       name: "{{ fqdn }}"
+#   register: instance_facts
+#   until: instance_facts != -1
+#   changed_when: false
+#   retries: 30
+#   delay: 2
+- debug:
+    msg: "{{ hw_eth0 }}"
+
+
+- name: Update inventory
+  set_fact:
+      ansible_ssh_host: "{{ hw_eth0['ipaddresses'][0] }}"
+      fqdn: "{{ fqdn }}"

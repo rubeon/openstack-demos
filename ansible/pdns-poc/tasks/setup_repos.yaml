@@ -1,0 +1,59 @@
+- name: Disable Fastest-Mirror Plugin
+  file:
+    src: etc/yum/pluginconf.d/fastestmirror.conf
+    dest: /etc/yum/pluginconf.d/fastestmirror.conf
+  tags: yum-config
+
+- name: DevOps CentOS Repo
+  yum_repository:
+    name: DevOps-CentOS-Repo
+    description: Internal Repo
+    # baseurl: http://reposerv.dom.example.com/repos/centos/
+    baseurl: http://reposerv.dom.example.com/repos/mirror.centos.org/7.4.1708-ew/os/$basearch/
+    gpgkey: http://reposerv.dom.example.com/repos/centos/RPM-GPG-KEY-CentOS-7
+  tags: yum-config
+
+- name: DevOps CentOS Updates
+  yum_repository:
+    name: DevOps-CentOS-Updates
+    description: Internal Repo
+    baseurl: http://reposerv.dom.example.com/repos/mirror.centos.org/7.4.1708-ew/updates/$basearch/
+  tags: yum-config
+
+- name: DevOps CentOS EPEL
+  yum_repository:
+    name: DevOps-CentOS-EPEL
+    description: Internal Repo
+    baseurl: http://reposerv.dom.example.com/repos/epel/$releasever/$basearch/
+    gpgkey: https://archive.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
+  tags: yum-config
+
+- name: DevOps VMWare Repo
+  yum_repository:
+    name: DevOps-VMWare-Repo
+    description: Internal Repo
+    baseurl: http://reposerv.dom.example.com/repos/vmware/
+  tags: yum-config
+
+- name: Update RDMA Core [BZ#1477574]
+  yum:
+    name: rdma-core
+    state: latest
+  ignore_errors: true
+  tags:
+    - yum-config
+    - workaround
+
+- name: Ensure the yum package index is up to Date
+  yum:
+    update_cache: yes
+    name: '*'
+    state: latest
+  tags: yum-config
+
+
+- name: Install Editor
+  package:
+    name: joe
+    state: latest
+  tags: awesomeness

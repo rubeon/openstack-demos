@@ -1,0 +1,38 @@
+- name: Install Python Requests
+  yum:
+    name: python-requests
+    state: latest
+- name: DNS Zone
+  powerdns_zone:
+    name: "{{ item.name }}"
+    kind: master
+    nameservers: "{{ item.nameservers }}"
+    state: present
+    pdns_host: localhost
+    pdns_port: "{{ pdns_api_port }}"
+    pdns_api_key: "{{ pdns_api_key }}"
+  with_items: "{{ local_zones }}"
+  
+# - name: DNS Zone SOA
+#   powerdns_record:
+#     name: "{{ application_environment }}.{{ domain }}"
+#     type: SOA
+#     content: "{{ ansible_fqdn }}"
+#     zone: "{{ application_environment }}.{{ domain }}"
+#     state: present
+#     pdns_host: localhost
+#     pdns_port: "{{ pdns_api_port }}"
+#     pdns_api_key: "{{ pdns_api_key }}"
+
+- name: DNS A Records
+  powerdns_record:
+    name: "{{ hostvars[item]['ansible_fqdn'] }}"
+    type: A
+    content: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}"
+    state: present
+    zone: "{{ application_environment }}.{{ domain }}"
+    pdns_host: localhost
+    pdns_port: "{{ pdns_api_port }}"
+    pdns_api_key: "{{ pdns_api_key }}"
+  with_items: "{{ play_hosts }}"
+

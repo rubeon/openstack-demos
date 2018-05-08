@@ -1,0 +1,23 @@
+---
+#
+#  main.yaml
+#
+
+- name: Restart Quagga Services
+  become: true
+  service:
+    enabled: yes
+    name: ospfd
+    state: restarted
+
+- name: Restart Zebra Services
+  become: true
+  service:
+    enabled: yes
+    name: zebra
+    state: restarted
+
+- name: Bring up Loopback Interface
+  become: true
+  command: "/sbin/ifup lo:0"
+  

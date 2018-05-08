@@ -1,0 +1,114 @@
+- hosts: zone1_stg2
+  connection: local
+  gather_facts: no
+  # become: true
+  tasks:
+      - include_vars: group_vars/poc.yaml
+      - include_vars: vars/siteconfig.yaml
+      - include: tasks/provision_guests.yaml
+        vars:
+            vcenter_user: "{{ lookup('env', 'VSPHERE_USER') }}"
+            vcenter_server:   "{{ lookup('env', 'VSPHERE_SERVER') }}"
+            vcenter_password: "{{ lookup('env', 'VSPHERE_PASSWORD') }}"
+            fqdn: "{{ site_name }}{{ hostname }}-{{ clus_name }}.{{ application_name }}.{{ application_environment }}.{{ domain }}"
+        delegate_to: localhost
+
+- hosts: zone1_stg2
+  become: true
+  vars_files:
+    - vars/siteconfig.yaml    
+  tasks:
+      - include: tasks/prepare_systems.yaml
+      - include: tasks/setup_repos.yaml
+
+- hosts: zone1_stg2
+  become: true
+  vars_files:
+      - vars/ipa.yaml
+      - vars/siteconfig.yaml
+  roles:
+      - role: freeipa-client
+
+- hosts: db
+  become: true
+  roles:
+      - role: mysql
+  pre_tasks:
+      - include: tasks/db.yaml
+  vars_files:
+    - vars/powerdns_db.yaml
+    - vars/siteconfig.yaml
+
+- hosts: db_masters
+  become: true
+  gather_facts: yes
+  vars_files: 
+      - vars/powerdns_db.yaml
+      - vars/siteconfig.yaml
+  tasks:
+      - include: tasks/add_database_users.yaml
+
+- hosts: dns_masters
+  vars_files:
+      - vars/powerdns_db.yaml
+      - group_vars/db.yaml
+      - vars/siteconfig.yaml
+  become: true
+  roles:
+      - role: mysql
+      - role: pdns
+      - role: dns
+        dns_domain: localdomain
+        dns_nameservers: ['127.0.0.1', '8.8.8.8']
+
+  tasks:
+      - include: tasks/setup_powerdns_db.yaml
+
+- hosts: dns_slaves
+  gather_facts: y
+  become: true
+  vars_files:
+    - vars/siteconfig.yaml
+  roles:
+      - role: pdns
+      - role: dns
+        dns_domain: "{{ domain }}"
+        dns_nameservers: "{{ resolvers }}"
+  pre_tasks:
+      - include: tasks/setup_powerdns_slave.yaml
+
+- hosts: clients
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/siteconfig.yaml
+  roles:
+      - role: dns
+        dns_domain: "{{ domain }}"
+        dns_nameservers: "{{ resolvers }}"
+
+# register with FreeIPA server
+# first, the clients
+
+# - hosts: clients
+#   become: true
+#   roles:
+#
+
+# - hosts: db
+#   become: true
+#   roles:
+#       - role: mysql
+#   tasks:
+#       - include: tasks/db.yaml
+#       - name: MySQL Master
+#         debug:
+#             msg: "{{mysql_replication_user}}"
+#
+# - hosts: db_masters
+#   become: true
+#   gather_facts: yes
+#   vars_files:
+#       - vars/powerdns_db.yaml
+#   tasks:
+#       - include: tasks/add_database_users.yaml

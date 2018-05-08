@@ -1,0 +1,77 @@
+- name: Dump resolvers
+  debug:
+    msg: "{{ resolvers }}"
+
+- name: Goddam FQDN Checks
+  debug:
+    msg: "New: {{ fqdn is undefined and not ansible_fqdn.endswith(domain) }}. Update: {{ fqdn is undefined and ansible_fqdn.endswith(domain) }}"
+
+- name: Set FQDN (new)
+  set_fact:
+      fqdn: "{{ site_name }}{{ ansible_hostname }}-{{ clus_name }}.{{ application_name }}.{{ application_environment }}.{{ domain }}"
+  when: fqdn is undefined and not ansible_fqdn.endswith(domain) 
+#
+- name: Set FQDN (update)
+  set_fact:
+      fqdn: "{{ ansible_fqdn }}"
+  when: fqdn is undefined and ansible_fqdn.endswith(domain)
+
+- name: Make sure we have a 'wheel' group
+  group:
+    name: wheel
+    state: present
+
+- name: Allow 'wheel' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: visudo -cf %s
+
+- name: Add System Account
+  user: 
+    name: sys_ewi09
+    ssh_key_file: .ssh/id_rsa.pub
+    groups: wheel
+
+- name: Add Authorized Key
+  authorized_key:
+    user: sys_ehw
+    state: present
+    key: (key removed)
+
+- name: Add Vagrant key
+  copy:
+    src: files/vagrant_key
+    dest: /home/vagrant/.ssh/id_rsa
+    owner: vagrant
+    group: vagrant
+    mode: 0600
+  when: ansible_vagrant is defined
+
+- name: Add Authorized Key
+  authorized_key:
+    user: vagrant
+    state: present
+    key: (key removed)
+  when: ansible_vagrant is defined
+
+- name: Set hostname
+  hostname: 
+      name: "{{ fqdn }}"
+
+- name: Make sure incorrect libs are not installed #FIXME
+  yum:
+      name: mariadb-libs-5.5.52-1.el7
+      state: absent
+  when: ansible_vagrant is defined      
+
+- name: Create Hosts File
+  template:
+    src: templates/etc/hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+    

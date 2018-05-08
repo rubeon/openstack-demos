@@ -1,0 +1,16 @@
+- name: Add PowerDNS Database
+  mysql_db:
+      name: "{{ pdns_database_name }}"
+      state: present
+
+- name: Setup PowerDNS database backend users
+  mysql_user:
+      name: "{{ pdns_database_user }}"
+      host: "{{ item }}"
+      password: "{{ pdns_database_password }}"
+      priv: '*.*:ALL'
+      state: present
+  with_items: "{{ hostvars[groups['dns_masters'][0]]['ansible_all_ipv4_addresses'] }}"
+
+
+# need to setup a permission for each IP address of the database server

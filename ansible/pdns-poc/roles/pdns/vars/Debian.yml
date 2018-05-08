@@ -1,0 +1,22 @@
+---
+
+# The name of the PowerDNS package
+default_pdns_package_name: "pdns-server"
+
+# List of PowerDNS Backends Debian packages
+default_pdns_backends_packages:
+  geo: pdns-backend-geo
+  geoip: pdns-backend-geoip
+  gmysql: pdns-backend-mysql
+  gpgsql: pdns-backend-pgsql
+  gsqlite3: pdns-backend-sqlite3
+  ldap: pdns-backend-ldap
+  lmdb: pdns-backend-lmdb
+  lua: pdns-backend-lua
+  mydns: pdns-backend-mydns
+  pipe: pdns-backend-pipe
+  remote: pdns-backend-remote
+  tinydns: pdns-backend-tinydns
+
+# The directory where the PowerDNS configuration is located 
+default_pdns_config_dir: '/etc/powerdns'

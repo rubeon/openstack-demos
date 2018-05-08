@@ -1,0 +1,102 @@
+- hosts: zone1_stg1
+  connection: local
+  gather_facts: no
+  # become: true
+  tasks:
+      - include_vars: group_vars/poc.yaml
+      - include_vars: vars/siteconfig.yaml
+      - include: tasks/provision_guests.yaml
+        vars:
+            vcenter_user: "{{ lookup('env', 'VSPHERE_USER') }}"
+            vcenter_server:   "{{ lookup('env', 'VSPHERE_SERVER') }}"
+            vcenter_password: "{{ lookup('env', 'VSPHERE_PASSWORD') }}"
+            fqdn: "{{ site_name }}{{ hostname }}-{{ clus_name }}.{{ application_name }}.{{ application_environment }}.{{ domain }}"
+        delegate_to: localhost
+
+- hosts: zone1_stg1
+  become: true
+  pre_tasks:
+    - include: tasks/purge_repos.yaml
+    - include: tasks/setup_repos.yaml
+  vars_files:
+    - vars/siteconfig.yaml
+    - vars/ipa.yaml
+  tasks:
+      - include: tasks/prepare_systems.yaml    
+  roles:
+      - role: freeipa-client
+
+# - hosts: zone1_stg1
+#   become: true
+#   vars_files:
+#       - vars/siteconfig.yaml
+#   
+- hosts: db
+  become: true
+  roles:
+      - role: mysql
+  # pre_tasks:
+  #     - include: tasks/db.yaml
+  vars_files:
+      - vars/siteconfig.yaml
+      - vars/powerdns_db.yaml
+
+- hosts: db_masters
+  become: true
+  gather_facts: yes
+  vars_files: 
+      - vars/siteconfig.yaml
+      - vars/powerdns_db.yaml
+  tasks:
+      - include: tasks/add_database_users.yaml
+
+- hosts: dns_masters
+  vars_files:
+      - vars/siteconfig.yaml
+      - vars/powerdns_db.yaml
+      - group_vars/db.yaml
+  become: true
+  roles:
+      - role: mysql
+      - role: pdns
+      - role: dns
+        dns_domain: localdomain
+        dns_nameservers: "{{ resolvers }}"
+  tasks:
+      - include: tasks/setup_powerdns_db.yaml
+      # - include: tasks/setup_powerdns_records.yaml
+
+- hosts: dns_slaves
+  gather_facts: y
+  become: true
+  vars_files:
+      - vars/siteconfig.yaml
+  roles:
+      - role: pdns
+      - role: dns
+        dns_domain: "{{ domain }}"
+        dns_nameservers: "{{ resolvers }}"
+  pre_tasks:
+      - include: tasks/setup_powerdns_slave.yaml
+
+- hosts: clients
+  gather_facts: true
+  become: true
+  vars_files:
+      - vars/siteconfig.yaml
+  roles:
+      - role: dns
+        dns_domain: "{{ domain }}"
+        dns_nameservers: "{{ resolvers }}"
+
+# setup anycast
+
+- hosts: dns_masters
+  gather_facts: true
+  become: true
+  vars_files:
+    - vars/siteconfig.yaml
+  vars:
+    - netmask: "{{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.netmask }}"
+  roles:
+    - role: anycast
